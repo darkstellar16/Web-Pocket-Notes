@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { Box, Grid, Typography, Button, Paper } from "@mui/material";
+import React, { Fragment, useState } from 'react';
+import { Box, Grid, Typography, InputAdornment, Button, Paper, TextField, IconButton } from "@mui/material";
 import { MessageModal } from '../../components/Modals/MessageModal';
+import SendIcon from '@mui/icons-material/Send';
+import { NoteCard } from '../../components/NoteCard';
 
 
 
@@ -30,13 +32,12 @@ export const Preview = () => {
     const [openModal, setOpenModal] = useState(false);
 
     return (
-        <Box p={5} >
-            <Grid container spacing={2} border="1px black solid" component={Paper}>
-                <Grid item lg={3} md={5} sm={6} xs={12} border="1px black solid">
+        <Box p={15} sx={{ maxHeight: 800, overflowY: "auto" }} >
+            <Grid container spacing={1} component={Paper}>
+                <Grid item lg={3} md={5} sm={6} xs={12}>
                     <Box>
                         <Typography variant='h5'>Pocket Notes</Typography>
                     </Box>
-
                     <Box p={2}>
                         <Button variant="contained" onClick={() => setOpenModal(true)} >+ Create Notes group</Button>
                         {
@@ -56,16 +57,40 @@ export const Preview = () => {
 
                     </Box>
                 </Grid>
-                <Grid item lg={9} md={7} sm={6} xs={12} border="1px black solid">
-                    <Box height="100%" >
-                        <Box className="displayCenter">
-                            <img src='/assets/images/banner.png' width="50%" />
+                <Grid item lg={9} md={7} sm={6} xs={12} >
+                    <Box p={1}>
+                        <Box sx={{ display: "flex", flexDirection: "row" }}>
+                            <Box sx={{ bgcolor: 'blue', borderRadius: "50%", height: "45px", width: "45px" }} className="displayCenter">
+                                <Typography variant='body2' color={"white"} >N1</Typography>
+                            </Box>
+                            <Box className="displayCenter" paddingLeft={2}>
+                                <Typography variant='h5'>Notes 1</Typography>
+                            </Box>
                         </Box>
-                        <Box className="displayCenter">
-                            <Typography variant='h5'>Pocket Notes</Typography>
-                            <Typography variant='body2' p={1}>
-                                Send and receive messages without keeping your phone online.
-                            </Typography>
+                    </Box>
+                    <Box p={2} pb={2} borderRadius={2} sx={{ maxHeight: 400, overflowY: "auto" }} bgcolor={"powderblue"}>
+                        {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((item) => {
+                            return <Fragment>
+                                <NoteCard />
+                            </Fragment>
+                        })}
+
+                    </Box>
+                    <Box >
+                        <Box p={1} >
+                            <TextField
+                                fullWidth={true}
+                                multiline rows={5}
+                                placeholder="Enter your message here...."
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="end" sx={{ alignSelf: 'flex-end' }}>
+                                            <IconButton>
+                                                <SendIcon />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    ),
+                                }} />
                         </Box>
                     </Box>
                 </Grid>

@@ -3,12 +3,12 @@ import { Box, Button, Grid, Typography, Container, Card, TextField, InputAdornme
 import Checkbox from '@mui/material/Checkbox';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-
+import { useNavigate } from "react-router-dom"
 
 
 export const Signup = () => {
 
-
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
     const [isdisabled, setIsDisabled] = useState(false);
@@ -27,8 +27,8 @@ export const Signup = () => {
                     <Typography variant='h4'>Pocket Notes</Typography>
                 </Box>
                 <Box >
-                    <Button>Login</Button>
-                    <Button>Sign Up</Button>
+                    <Button onClick={() => navigate("/login")}>Login</Button>
+                    <Button onClick={() => navigate("/")}>Sign Up</Button>
                 </Box>
             </Box>
 

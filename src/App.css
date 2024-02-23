@@ -1,0 +1,17 @@
+.displayCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.displayStart {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.displayEnd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

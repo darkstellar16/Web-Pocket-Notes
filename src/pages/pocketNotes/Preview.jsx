@@ -2,21 +2,18 @@ import React, { Fragment, useEffect, useState } from 'react';
 import {
     Box, Grid, Typography,
     InputAdornment, Button, TextField,
-    IconButton, Card
+    IconButton, Card,
 } from "@mui/material";
 import { MessageModal } from '../../components/Modals/MessageModal';
 import SendIcon from '@mui/icons-material/Send';
 import { NoteCard } from '../../components/NoteCard';
-import { Logout } from '@mui/icons-material';
-import { ConfirmationModal } from '../../components/Modals/ConfirmationModal';
-import { useNavigate } from "react-router-dom"
 import axios from "axios";
 import toast from "react-hot-toast"
-
+import { ProfilePopper } from '../../components/ProfilePopper';
 
 export const Preview = () => {
 
-    const navigate = useNavigate();
+
     const [openModal, setOpenModal] = useState(false);
     const [isLogout, setIsLogout] = useState(false);
     const [noteContent, setNoteContent] = useState("");
@@ -25,6 +22,7 @@ export const Preview = () => {
     const [selcetedNoteTitle, setSelectedNoteTitle] = useState("");
     const [selcetedNoteColor, setSelectedNoteColor] = useState("");
     const [selectedNoteData, setSelectedNoteData] = useState("");
+    const [userName, setUserName] = useState("");
 
 
 
@@ -34,8 +32,10 @@ export const Preview = () => {
     const noteHandler = async () => {
         try {
             const response = await axios.get(`http://localhost:9000/user-note-list?_id=${user_id}`)
+            console.log("response--", response);
             if (response?.data?.status === 200) {
                 setNoteList(response?.data?.result?.lists);
+                setUserName(response?.data?.result?.username);
             }
         } catch (error) {
             console.log(error);
@@ -80,16 +80,6 @@ export const Preview = () => {
         }
     }
 
-
-
-
-    //--funtion for the logout of the user--//
-    const logoutHandler = () => {
-        localStorage.clear();
-        navigate("/login");
-    }
-
-
     //--function to the title in a format--//
     const getTitle = (value) => {
         const response = value.split(" ");
@@ -102,7 +92,7 @@ export const Preview = () => {
     return (
         <Fragment>
             <Box color={"black"}
-                bgcolor={selcetedNoteColor ? selcetedNoteColor : "#AAC8A7"}
+                bgcolor={"#AAC8A7"}
                 sx={{
                     display: "flex", flexDirection: "row", justifyContent: "space-between",
                     position: "sticky",
@@ -113,14 +103,11 @@ export const Preview = () => {
                 <Box className="displayCenter">
                     <Typography variant='h4' sx={{ fontFamily: "cursive" }}>Pocket Notes</Typography>
                 </Box>
-                <Box >
-                    <IconButton
-                        title='Logout'
-                        onClick={() => setIsLogout(true)}
-                    >
-                        <Logout />
-                    </IconButton>
+                <Box>
+                    <ProfilePopper userName={userName} />
                 </Box>
+
+
             </Box>
             <Box p={5}  >
                 <Grid container spacing={1} >
@@ -218,15 +205,6 @@ export const Preview = () => {
                 open={openModal}
                 close={() => setOpenModal(false)}
             />}
-
-            {isLogout && <ConfirmationModal
-                open={isLogout}
-                close={() => setIsLogout(false)}
-                title={"Logout Pocket Notes"}
-                description={"Are you sure you want to logout"}
-                onClick={logoutHandler} />
-
-            }
         </Fragment>
 
     );

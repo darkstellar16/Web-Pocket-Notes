@@ -29,7 +29,6 @@ export const Signin = () => {
                 email: formInfo.email,
                 password: formInfo.password,
             })
-            // console.log("response--", response);
             if (response?.data?.status === 200) {
                 toast.success(response?.data?.message);
                 localStorage.setItem("acces_token", JSON.stringify(response?.data?.user?.token));

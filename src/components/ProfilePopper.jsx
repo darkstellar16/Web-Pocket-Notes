@@ -31,11 +31,12 @@ export const ProfilePopper = ({ userName }) => {
 
 
     const getUserName = (value) => {
-        const response = value.split(" ");
-        console.log(response);
-        const ans = (response?.[0]?.substring(0, 1)) + (response?.[1]?.substring(0, 1))?.toUpperCase();
-        return ans
-    }
+        const [firstName, lastName] = value.split(" ");
+        return `${firstName?.[0]}${lastName?.[0]?.toUpperCase()}`;
+    };
+
+
+
 
     return (
         <Fragment>

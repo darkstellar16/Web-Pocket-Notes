@@ -15,7 +15,7 @@ export const Preview = () => {
 
 
     const [openModal, setOpenModal] = useState(false);
-    const [isLogout, setIsLogout] = useState(false);
+    const [isSubmit, setIsSubmit] = useState(false);
     const [noteContent, setNoteContent] = useState("");
     const [noteList, setNoteList] = useState([]);
     const [selectedNote, setSelectedNote] = useState("");
@@ -24,15 +24,11 @@ export const Preview = () => {
     const [selectedNoteData, setSelectedNoteData] = useState("");
     const [userName, setUserName] = useState("");
 
-
-
-
     //-- function to get the note list and note data--//
     const user_id = JSON.parse(localStorage.getItem("user_id"));
     const noteHandler = async () => {
         try {
             const response = await axios.get(`http://localhost:9000/user-note-list?_id=${user_id}`)
-            console.log("response--", response);
             if (response?.data?.status === 200) {
                 setNoteList(response?.data?.result?.lists);
                 setUserName(response?.data?.result?.username);
@@ -52,7 +48,6 @@ export const Preview = () => {
     useEffect(() => {
         if (selectedNote) {
             const ans = noteList?.find(item => item?._id === selectedNote)
-            console.log(ans);
             setSelectedNoteData(ans.datas);
         }
     }, [selectedNote, noteList])
@@ -147,9 +142,26 @@ export const Preview = () => {
                     <Grid item lg={9} md={7} sm={6} xs={12}>
                         <Box>
                             {selectedNoteData?.length === 0 ?
-                                (<Box sx={{ height: "490px" }}>
-                                    <Box>
-                                        <img src='/assets/images/banner.png' width="100%" />
+                                (<Box sx={{ height: "100%", position: "relative" }}>
+                                    <Box sx={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "contain",
+                                        '@media (max-width: 1200px)': {
+                                            height: "400px",
+                                        },
+                                        '@media (max-width: 600px)': {
+                                            height: "300px",
+                                        },
+                                        '@media (min-width: 601px) and (max-width: 900px)': {
+                                            height: "400px",
+                                        },
+                                    }}>
+                                        <img
+                                            src='/assets/images/banner.png'
+                                            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                                            alt="Banner"
+                                        />
                                     </Box>
                                 </Box>) :
                                 (<Box>
@@ -181,14 +193,24 @@ export const Preview = () => {
                                         fullWidth={true}
                                         multiline rows={6}
                                         value={noteContent}
-                                        onChange={(e) => setNoteContent(e.target.value)}
+                                        error={isSubmit && noteContent === ""}
+                                        helperText={isSubmit && noteContent === "" && "Please enter your message"}
+                                        onChange={(e) => {
+                                            setNoteContent(e.target.value)
+                                            setIsSubmit(!isSubmit)
+                                        }}
                                         placeholder="Enter your message here...."
                                         InputProps={{
                                             endAdornment: (
                                                 <InputAdornment position="end" sx={{ alignSelf: 'flex-end' }}>
                                                     <IconButton
-
-                                                        onClick={() => noteDataHandler(selectedNote)}
+                                                        onClick={() => {
+                                                            setIsSubmit(true)
+                                                            if (noteContent !== "") {
+                                                                setIsSubmit(false);
+                                                                noteDataHandler(selectedNote)
+                                                            }
+                                                        }}
                                                     >
                                                         <SendIcon />
                                                     </IconButton>

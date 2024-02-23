@@ -9,3 +9,21 @@
   align-items: center;
   justify-content: flex-start;
 }
+
+.displayEnd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: gray;
+  /* Set the width of the scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: black;
+  /* Set the color of the scrollbar thumb */
+}

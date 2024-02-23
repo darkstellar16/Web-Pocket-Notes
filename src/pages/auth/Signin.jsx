@@ -5,6 +5,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import toast from "react-hot-toast"
+import { TopBar } from '../../components/TopBar';
 // import { ScreenLoader } from '../../components/ScreenLoader';
 
 export const Signin = () => {
@@ -20,6 +21,7 @@ export const Signin = () => {
     })
 
 
+    //--function to get the signin of the user--//
     const signinHandler = async () => {
         try {
             setIsLoading(true);
@@ -44,20 +46,9 @@ export const Signin = () => {
         }
     }
 
-    // console.log(JSON.parse(localStorage.getItem('user_id')));
-
     return (
         <Fragment>
-            <Box bgcolor={"black"} color={"white"} sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }} p={1}>
-                <Box className="displayCenter">
-                    <Typography variant='h4'>Pocket Notes</Typography>
-                </Box>
-                <Box >
-                    <Button onClick={() => navigate("/login")}>Login</Button>
-                    <Button onClick={() => navigate("/")}>Sign Up</Button>
-                </Box>
-            </Box>
-
+            <TopBar />
             <Container maxWidth="md">
                 <Box textAlign="center" mb={2}>
                     <Typography variant='h4' mt={3}>Log In Pocket Notes</Typography>

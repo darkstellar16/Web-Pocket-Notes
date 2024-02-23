@@ -11,6 +11,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useNavigate } from "react-router-dom"
 import axios from 'axios';
 import toast from "react-hot-toast"
+import { TopBar } from '../../components/TopBar';
 
 export const Signup = () => {
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const Signup = () => {
         password: ""
     })
 
-
+    //--function to get the signup of the user--//
     const signupHandler = async () => {
         try {
             const response = await axios.post("http://localhost:9000/signup", {
@@ -46,16 +47,7 @@ export const Signup = () => {
 
     return (
         <Fragment>
-            <Box bgcolor={"black"} color={"white"} sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }} p={1}>
-                <Box className="displayCenter">
-                    <Typography variant='h4' >Pocket Notes</Typography>
-                </Box>
-                <Box >
-                    <Button onClick={() => navigate("/login")}>Login</Button>
-                    <Button onClick={() => navigate("/")}>Sign Up</Button>
-                </Box>
-            </Box>
-
+            <TopBar />
             <Container maxWidth="md">
                 <Box textAlign="center" mb={2}>
                     <Typography variant='h4' mt={3}>Sign up Pocket Notes</Typography>

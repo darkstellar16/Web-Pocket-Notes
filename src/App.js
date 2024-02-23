@@ -1,9 +1,11 @@
+import "./App.css"
 import React from 'react';
 import { Signin } from './pages/auth/Signin';
 import { Signup } from './pages/auth/Signup';
 import { Preview } from './pages/pocketNotes/Preview';
-import { BrowserRouter, Routes, Route, } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import { PrivateRoute } from './components/PrivateRoute';
 
 function App() {
 
@@ -13,7 +15,14 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Signup />} />
           <Route exact path="/login" element={<Signin />} />
-          <Route exact path='/preview' element={<Preview />} />
+          <Route
+            exact path="/preview"
+            element={
+              <PrivateRoute>
+                <Preview />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
       <Toaster
@@ -31,5 +40,9 @@ function App() {
     </div>
   );
 }
+
+
+
+
 
 export default App;

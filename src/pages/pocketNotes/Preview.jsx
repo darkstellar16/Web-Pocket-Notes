@@ -47,6 +47,8 @@ export const Preview = () => {
     }, []);
 
 
+
+    //-- function to get the updated note list with the noteData--//
     useEffect(() => {
         if (selectedNote) {
             const ans = noteList?.find(item => item?._id === selectedNote)
@@ -54,6 +56,9 @@ export const Preview = () => {
             setSelectedNoteData(ans.datas);
         }
     }, [selectedNote, noteList])
+
+
+
 
 
     //--function to add the note data in the selected Data--//
@@ -78,14 +83,14 @@ export const Preview = () => {
 
 
 
-
+    //--funtion for the logout of the user--//
     const logoutHandler = () => {
         localStorage.clear();
         navigate("/login");
     }
 
 
-
+    //--function to the title in a format--//
     const getTitle = (value) => {
         const response = value.split(" ");
         const ans = (response?.[0]?.substring(0, 2))?.toUpperCase();
@@ -96,9 +101,17 @@ export const Preview = () => {
 
     return (
         <Fragment>
-            <Box color={"black"} bgcolor={selcetedNoteColor ? selcetedNoteColor : "blue"} sx={{ display: "flex", flexDirection: "row", justifyContent: "space-between" }} p={1}>
+            <Box color={"black"}
+                bgcolor={selcetedNoteColor ? selcetedNoteColor : "#AAC8A7"}
+                sx={{
+                    display: "flex", flexDirection: "row", justifyContent: "space-between",
+                    position: "sticky",
+                    top: 0,
+                    zIndex: 1000,
+                }}
+                p={1}>
                 <Box className="displayCenter">
-                    <Typography variant='h4'>Pocket Notes</Typography>
+                    <Typography variant='h4' sx={{ fontFamily: "cursive" }}>Pocket Notes</Typography>
                 </Box>
                 <Box >
                     <IconButton
@@ -147,7 +160,7 @@ export const Preview = () => {
                     <Grid item lg={9} md={7} sm={6} xs={12}>
                         <Box>
                             {selectedNoteData?.length === 0 ?
-                                (<Box sx={{ height: "490px" }} component={Card}>
+                                (<Box sx={{ height: "490px" }}>
                                     <Box>
                                         <img src='/assets/images/banner.png' width="100%" />
                                     </Box>

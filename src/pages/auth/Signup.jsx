@@ -29,7 +29,7 @@ export const Signup = () => {
     //--function to get the signup of the user--//
     const signupHandler = async () => {
         try {
-            const response = await axios.post("http://localhost:9000/signup", {
+            const response = await axios.post("https://web-pocket-notes-backend-1.onrender.com/signup", {
                 username: formInfo.username,
                 email: formInfo.email,
                 password: formInfo.password,

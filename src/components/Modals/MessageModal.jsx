@@ -42,7 +42,7 @@ export const MessageModal = ({ close, open }) => {
     const user_id = JSON.parse(localStorage.getItem("user_id"));
     const noteHandler = async () => {
         try {
-            const response = await axios.post("http://localhost:9000/create-note-list", {
+            const response = await axios.post("https://web-pocket-notes-backend-1.onrender.com/create-note-list", {
                 title: groupName,
                 color_code: colorName,
                 userid: user_id,

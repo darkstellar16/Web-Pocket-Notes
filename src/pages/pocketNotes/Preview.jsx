@@ -27,7 +27,7 @@ export const Preview = () => {
     const user_id = JSON.parse(localStorage.getItem("user_id"));
     const noteHandler = async () => {
         try {
-            const response = await axios.get(`http://localhost:9000/user-note-list?_id=${user_id}`)
+            const response = await axios.get(`https://web-pocket-notes-backend-1.onrender.com/user-note-list?_id=${user_id}`)
             if (response?.data?.status === 200) {
                 setNoteList(response?.data?.result?.lists);
                 setUserName(response?.data?.result?.username);
@@ -58,7 +58,7 @@ export const Preview = () => {
     //--function to add the note data in the selected Data--//
     const noteDataHandler = async (selectedNote) => {
         try {
-            const response = await axios.post("http://localhost:9000/create-note-data", {
+            const response = await axios.post("https://web-pocket-notes-backend-1.onrender.com/create-note-data", {
                 content: noteContent,
                 listid: selectedNote,
             })

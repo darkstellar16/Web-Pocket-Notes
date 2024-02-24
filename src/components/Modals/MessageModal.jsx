@@ -47,7 +47,6 @@ export const MessageModal = ({ close, open }) => {
                 color_code: colorName,
                 userid: user_id,
             })
-            console.log("response--", response);
             if (response?.data?.status === 200) {
                 toast.success(response?.data?.message);
                 close();

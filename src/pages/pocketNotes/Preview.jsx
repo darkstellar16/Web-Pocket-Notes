@@ -13,7 +13,6 @@ import { ProfilePopper } from '../../components/ProfilePopper';
 
 export const Preview = () => {
 
-
     const [openModal, setOpenModal] = useState(false);
     const [isSubmit, setIsSubmit] = useState(false);
     const [noteContent, setNoteContent] = useState("");
@@ -82,8 +81,6 @@ export const Preview = () => {
         return ans
     }
 
-
-
     return (
         <Fragment>
             <Box color={"black"}
@@ -113,8 +110,9 @@ export const Preview = () => {
                         <Box p={2}>
                             <Button variant="contained" onClick={() => setOpenModal(true)} >+ Create Notes group</Button>
                             {
-                                noteList && noteList.map((item) => {
+                                noteList && noteList.map((item, index) => {
                                     return <Box
+                                        key={`row${index}`}
                                         component={Card}
                                         borderRadius={5}
                                         mt={3}
@@ -180,9 +178,9 @@ export const Preview = () => {
                                         </Box>
                                     </Box>
                                     <Box p={2} mt={1} pb={2} borderRadius={2} sx={{ height: "400px", overflowY: "auto" }} bgcolor={"rgba(247, 236, 220, 1)"}>
-                                        {selectedNoteData && selectedNoteData?.map((item) => {
+                                        {selectedNoteData && selectedNoteData?.map((item, index) => {
                                             return <Fragment>
-                                                <NoteCard item={item} />
+                                                <NoteCard item={item} key={`row${index}`} />
                                             </Fragment>
                                         })}
                                     </Box>

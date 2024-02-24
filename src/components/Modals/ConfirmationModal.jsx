@@ -11,8 +11,6 @@ import {
 export const ConfirmationModal = ({
     open, close, title, onClick, description
 }) => {
-
-    console.log(close);
     return (
         <Dialog open={open} onClose={close} maxWidth="sm" fullWidth>
             <DialogTitle position="relative">

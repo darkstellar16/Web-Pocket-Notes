@@ -4,9 +4,6 @@ import moment from "moment";
 
 
 export const NoteCard = ({ item }) => {
-
-    console.log(moment(item?.createdAt)?.format("DD/MM/YYYY"));
-
     return (
         <Grid container spacing={1} mt={2}>
             <Grid item lg={2} md={3} sm={3} xs={4}>

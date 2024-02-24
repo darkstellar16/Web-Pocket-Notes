@@ -37,7 +37,7 @@ export const ProfilePopper = ({ userName }) => {
             if (lastName) {
                 return `${firstName?.[0]}${lastName?.[0]?.toUpperCase()}`;
             } else {
-                return `${firstName?.[0]}${firstName?.[1]}`;
+                return `${firstName?.[0]}${firstName?.[1]?.toUpperCase()}`;
             }
         } else {
             return '';

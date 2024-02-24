@@ -10,7 +10,7 @@ import { PreventLoginRedirect } from "./components/PreventLoginRedirect";
 
 function App() {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     // Check if the access token exists in local storage
     if (JSON.parse(localStorage.getItem("acces_token"))) {

@@ -110,7 +110,7 @@ export const Signin = () => {
                             </Box>
                         </Grid>
                         <Grid item lg={6} sm={6} md={6} xs={12} className='displayCenter' >
-                            <Box><img src="/assets/images/Signin.png" alt="signup" width="100%" /></Box>
+                            <Box><img src="/assets/images/SignIn.png" alt="signup" width="100%" /></Box>
                         </Grid>
                     </Grid>
                 </Card>

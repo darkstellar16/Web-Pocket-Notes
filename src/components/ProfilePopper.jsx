@@ -31,11 +31,14 @@ export const ProfilePopper = ({ userName }) => {
 
 
     const getUserName = (value) => {
-        const [firstName, lastName] = value.split(" ");
-        return `${firstName?.[0]}${lastName?.[0]?.toUpperCase()}`;
+        if (value) {
+            const [firstName, lastName] = value.split(" ");
+            return `${firstName?.[0]}${lastName?.[0]?.toUpperCase()}`;
+        } else {
+            // Handle the case when value is undefined or null
+            return ''; // or some default value
+        }
     };
-
-
 
 
     return (
